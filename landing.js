@@ -17,6 +17,9 @@ let labelLocation = {
 }
 let infoLable = document.querySelectorAll('.info-label');
 let infoRect = document.querySelectorAll('.info-rect');
+// Used for mouseout to know that a label clicked so dont do its thing
+let labelClicked = false;
+let labelThatClick =""; // This will hold id of the label that was clicked
 
 // Loop through all the labels and if hover over it then turn yellow 
 // and make text bigger
@@ -29,7 +32,7 @@ infoLable.forEach(label => {
      * The other rectangles should retract and lables as well (to right)
     */
     currLabel.addEventListener('mouseover', (e) => {
-
+ 
         // Get the word used to attach to the rectangle
         if (label.id === e.target.id){
             // Change the color of the word label if hover
@@ -57,17 +60,24 @@ infoLable.forEach(label => {
     * Rectangle goes back to normal
     */
     label.addEventListener('mouseout', (e) => {
-        e.target.style.color = 'rgb(72, 72, 66)'; // Return the color to grey
-        infoLable.forEach(lable => {
-            // Return all the rectangles back to normal size
-            let substring = lable.id.split("").reverse().join("").substring(6).split("").reverse().join("");
 
-            let rect = document.getElementById(substring + "-rect");
-            rect.classList.remove('rect-folded');
-            lable.classList.remove('label-folded');
-            rect.style.backgroundColor = 'rgb(72, 72, 66)';
+            if(e.target.id !== labelThatClick){
+                e.target.style.color = 'rgb(72, 72, 66)'; // Return the color to grey
+            }
+            infoLable.forEach(lable => {
 
-        })
+                // Return all the rectangles back to normal size
+                let substring = lable.id.split("").reverse().join("").substring(6).split("").reverse().join("");
+
+                let rect = document.getElementById(substring + "-rect");
+                rect.style.backgroundColor = 'rgb(72, 72, 66)';
+                if(!labelClicked){
+                    // If label is clicked then keep retracted
+                    rect.classList.remove('rect-folded');
+                    lable.classList.remove('label-folded');
+                }
+            });
+        
     });
 
     /************************* CLICK LABEL **********************************
@@ -76,6 +86,8 @@ infoLable.forEach(label => {
     * Other labels font size shrinks
     */
     currLabel.addEventListener('click',(e)=>{
+        labelClicked = true; // Let program know that a label was clicked
+        labelThatClick = e.target.id; // Let program know what label was clicked
         
         /*** BACKGROUND ***/
         let bottomHalf = document.getElementById('bottom-half-landing');
@@ -85,25 +97,32 @@ infoLable.forEach(label => {
         topHalf.classList.add('top-half-landing-folded');
 
 
-        // // Get the word used to attach to the rectangle
-        // if (label.id === e.target.id) {
-        //     // Change the color of the word label clicked
-        //     label.style.color = 'white';
+    
+            // Change the color of the word label clicked
+            label.style.color = 'white';
 
-        //     infoLable.forEach(lable => {
-        //         // Retract all the rectangles 
-        //         let substring = lable.id.split("").reverse().join("").substring(6).split("").reverse().join("");
-        //         let rect = document.getElementById(substring + "-rect");
-        //         if ((lable.id !== e.target.id)) {
-        //             // Hide the labels not clicked
-        //             rect.classList.add('rect-folded');
-        //             lable.classList.add('label-folded');
-        //         } else {
-        //             // Change the color of the rectangle to yellow of the one hovering
-        //             rect.style.backgroundColor = 'yellow';
-        //         }
-        //     })
-        // }
+            infoLable.forEach(thisLabel => {
+                // Retract all the rectangles
+                // Get the substring to select associated rectangle 
+                let substring = thisLabel.id.split("").reverse().join("").substring(6).split("").reverse().join("");
+                let rect = document.getElementById(substring + "-rect"); // Get rectangle of associated label
+                if ((thisLabel.id !== e.target.id)) {
+                    // Hide the labels not clicked
+                    rect.classList.add('rect-folded'); // Fold the rectangle
+                    thisLabel.classList.add('label-folded'); // Fold the lable
+                    thisLabel.classList.add('label-smaller'); // Shrink the font size
+                    rect.classList.remove('rect-hidden'); // Make not hidded anymore
+                    thisLabel.style.color = 'rgb(72, 72, 66)';// Make sure if was white is grey now
+                } else {
+                    thisLabel.classList.remove('label-smaller'); // Remove shrink to the font size
+                    thisLabel.classList.add('label-hidden'); // Move the clicked word to the header
+
+                    // thisLabel.classList.add('label-header'); // Move the clicked word to the header
+                    // Hide the rectangle of the label clicked
+                    rect.classList.add('rect-hidden');
+                }
+            });
+        
     })
 });
 

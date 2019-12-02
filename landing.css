@@ -55,11 +55,25 @@ body{
     right: 2% !important;
     transition: right 1s;
 }
-/* When click the label, fully retract ones not used */
-.label-hidden{
-
+/* When click the label, shrink the font */
+.label-smaller{
+    font-size: 15px;
+    transition: font-size 1s;
 }
 .rect-hidden{
+    /* Add this to the label rectangle that was clicked */
+    width:0 !important;
+    transition: width 1s;
+}
+.label-hidden{
+    /* First hide the label to the right */
+    transition: right 1s linear 1s;
+    right: -300px !important;
+    
+
+}
+.label-header{
+    /* Once label hidden delay it to transition from left*/
 
 }
  /* Change the page background */
@@ -77,7 +91,7 @@ body{
 #about-label{
     bottom: 49%;
     right: 11%;
-    transition: right 1s;
+    transition: right 1s, font-size 1s;
 
 }
 #courses-rect{
@@ -89,7 +103,7 @@ body{
 #courses-label{
     bottom: 42%;
     right: 13%;
-    transition: right 1s;
+    transition: right 1s,font-size 1s;
 
 }
 #tech-rect{
@@ -101,7 +115,7 @@ body{
 #tech-label{
     bottom: 35%;
     right: 15%;
-    transition: right 1s;
+    transition: right 1s,font-size 1s;
 
 }
 #learning-rect{
@@ -113,7 +127,7 @@ body{
 #learning-label{
     bottom: 28%;
     right: 23%;
-    transition: right 1s;
+    transition: right 1s,font-size 1s;
 
 }
 #projects-rect{
@@ -125,6 +139,6 @@ body{
 #projects-label{
     bottom: 20%;
     right: 25%;
-    transition: right 1s;
+    transition: right 1s,font-size 1s;
 
 }
