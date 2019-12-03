@@ -27,6 +27,7 @@ body{
             top 1s linear 1s,
             left 1s linear 1s;
     
+    
 
 }
 
@@ -37,10 +38,6 @@ body{
     top: 56%;
     font-weight: 300;
 
-      
-
-    
-    
 }
 #name-label{
     position: absolute;
@@ -56,9 +53,15 @@ body{
 }
 .name-label-hidden{
     /* Hide name label when click on one of the tabs */
-    left: 0% !important;
+    left: -200% !important;
+    z-index: 1;
     transition: left 1s;
 
+}
+.right-header-half{
+    /* Whichever label is clicked, style the right grey */
+    color: rgb(72, 72, 66);
+    z-index: 1;
 }
 
 #position-label{
@@ -72,7 +75,7 @@ body{
     width: 50%;
 }
 .position-label-hidden{
-    left: 120% !important;
+    left: 400% !important;
     transition: left 1s;
 
 }
@@ -140,8 +143,8 @@ body{
  /* Change the page background */
 
 .top-half-landing-folded{
-    height: 100px !important;
-    width: 150px !important;
+    height: 65px !important;
+    width: 65px !important;
     transform: rotate(0deg) !important;
     top: 0 !important;
     left: 0 !important;
@@ -151,6 +154,7 @@ body{
             top 1s linear 1s,
             left 1s linear 1s;
 }
+
 #about-rect{
     width: 10%;
     top: 0;

@@ -101,6 +101,7 @@ infoLable.forEach(label => {
         /*** BACKGROUND ***/
         let bottomHalf = document.getElementById('bottom-half-landing');
         let topHalf = document.getElementById('top-half-landing');
+        let nameTitle = document.getElementById('brendan-label');
         // When click the label, all others retract
         bottomHalf.classList.add('bottom-half-landing-folded');
         topHalf.classList.add('top-half-landing-folded');
