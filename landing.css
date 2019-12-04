@@ -7,10 +7,12 @@ body{
     background-color: rgb(213, 212, 212);
 
 }
+
 #landing-page-container{
     width: 100%;
     height: 100%;
-    
+    position: absolute;
+
 }
 #top-half-landing{
     width: 120%;
@@ -26,9 +28,6 @@ body{
             height 1s linear 1s,
             top 1s linear 1s,
             left 1s linear 1s;
-    
-    
-
 }
 
 #bottom-half-landing{
@@ -39,25 +38,31 @@ body{
     font-weight: 300;
 
 }
+
 #name-label{
     position: absolute;
     bottom: -3.8vw;
-    left:12%;
+    left:17%;
     color: rgb(72, 72, 66);
     font-size: 4vw;
-   
+    
     /* transform: skew(10deg, 1vw); */
     width: 30%;
     transition: left 1s;
     z-index: 1;
-}
-.name-label-hidden{
-    /* Hide name label when click on one of the tabs */
-    left: -200% !important;
-    z-index: 1;
     transition: left 1s;
 
 }
+.name-label-hidden{
+    /* Hide name label when click on one of the tabs */
+    left: -300% !important;
+    
+    z-index: 1;
+    transition: left 1s;
+    
+
+}
+
 .right-header-half{
     /* Whichever label is clicked, style the right grey */
     color: rgb(72, 72, 66);
@@ -66,17 +71,23 @@ body{
 
 #position-label{
     position: absolute;
+    
     bottom: -1vw;
-    left:40%;
+    left:45%;
     color: rgb(213, 212, 212);
     font-size: 4vw;
    
     /* transform: skew(10deg, 1vw); */
     width: 50%;
+    transition: left 1s;
+
 }
 .position-label-hidden{
     left: 400% !important;
     transition: left 1s;
+
+    
+    
 
 }
 /* INFORMATION TABS */
@@ -133,7 +144,7 @@ body{
     color: white;
     position: fixed;
     /* Once label hidden delay it to transition from left*/
-    left: 2% !important;
+    left: 18px !important;
     top: 20px;
     transition: left 1s;
     z-index: 1;
@@ -213,5 +224,79 @@ body{
     top: 44%;
     right: 25%;
     transition: right 1s,font-size 1s;
+}
 
+.description-body-hidden{
+    position: absolute;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10%;
+    left: -90%;
+    width: 80%;
+    transition: left 1s linear 1.5s;
+    font-size: 13px;
+
+
+}
+.description-body-shown{
+    
+    left: 0% !important;
+    /* Delay transition so current description removed */
+    transition: left 1s linear 2.5s;
+    height: 100%;
+    font-size: 13px;
+
+}
+.description-body-shown p, .description-body-hidden p{
+    padding-right: 5%;
+}
+
+#footer{
+    width: 100%;
+    height: 80px;
+    top: 85%;
+    position: relative;
+    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 2vh;
+    
+}
+.social-media-icon-container{
+    
+    font-size: 4vh !important;
+    color: rgb(72, 72, 66);
+    
+}
+#footer-links{
+    
+    
+}
+.footer-item{
+    text-decoration: none;
+    color:rgb(72, 72, 66);
+    padding: 15px;
+    /* font-size: 15px; */
+    
+}
+.social-media-icon-container i{
+    color: rgb(72, 72, 66);
+    padding:10px;
+    
+
+}
+
+.icon-column{
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+   
+    width: 90%;
+    margin-right: 5%;
+    padding-top: 5%;
+    
+}
+.icon-column fab{
+    padding: 0 1%;
 }

@@ -43,7 +43,6 @@ infoLable.forEach(label => {
             infoLable.forEach(thisLabel => {
                 // Retract all the rectangles 
                 let substring = getLabelSubstring(thisLabel.id);
-                
                 let rect = document.getElementById(substring + "-rect");
                 if ((thisLabel.id !== e.target.id)) {
                     // Fold the rectangle to the side if hover
@@ -117,6 +116,7 @@ infoLable.forEach(label => {
                 let substring = getLabelSubstring(thisLabel.id);
                 let rect = document.getElementById(substring + "-rect"); // Get rectangle of associated label
                 let header = document.getElementById(substring + "-header"); // Get the header to transition
+                let descriptionBody = document.getElementById(substring +"-description-container"); // Get description associated with label
 
                 if ((thisLabel.id !== e.target.id)) {
                     // Hide the labels not clicked
@@ -127,7 +127,11 @@ infoLable.forEach(label => {
                     thisLabel.classList.remove('label-hidden'); // Move the clicked from header to list
                     header.classList.remove('label-header'); // Transitions header back out of screen
                     thisLabel.style.color = 'rgb(72, 72, 66)';// Make sure if was white is grey now
+                    
+                    descriptionBody.classList.remove('description-body-shown'); // Transition the old description out
                 } else {
+                    
+                    descriptionBody.classList.add('description-body-shown'); // Transition the new description
                     header.classList.add('label-header'); // Transitions header from left
                     thisLabel.classList.remove('label-smaller'); // Remove shrink to the font size
                     thisLabel.classList.add('label-hidden'); // Move the clicked word to the header
@@ -135,10 +139,30 @@ infoLable.forEach(label => {
                     // thisLabel.classList.add('label-header'); // Move the clicked word to the header
                     // Hide the rectangle of the label clicked
                     rect.classList.add('rect-hidden');
+
+                    
                 }
             });
         
-    })
+    });
+
+
+});
+/****************** THE SCREEN IS CLICKED, RETURN TO NORMAL ************/
+document.addEventListener('click', (e) => {
+    let taco = true;
+    let check = infoLable.forEach(label => {
+        
+        if(label.id === e.target.id){
+            taco = false;
+        }
+    });
+    if (taco) {
+        console.log('hi');
+        
+        
+
+    }
 });
 
 let getLabelSubstring=(labelID)=>{
@@ -146,6 +170,7 @@ let getLabelSubstring=(labelID)=>{
    return labelID.split("").reverse().join("").substring(6).split("").reverse().join("");
 
 }
+
 
 
 
